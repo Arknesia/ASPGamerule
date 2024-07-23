@@ -3,11 +3,11 @@
 ##################################################
 
 worlds:
-  # support regex
-  world-user-.*:
-    keepInventory: true
-  pvp:
+  lobby:
     doDaylightCycle: false
     fallDamage: false
     keepInventory: true
     randomTickSpeed: 0
+  # support regex
+  world-user-.*:
+    keepInventory: true
