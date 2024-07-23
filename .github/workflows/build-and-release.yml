@@ -19,6 +19,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Extract version from pom.xml
+        id: extract_version
+        run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+
       - name: Build with Maven
         run: mvn clean package
 
@@ -28,8 +32,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         with:
-          tag_name: ${{ github.sha }}
-          release_name: Release ${{ github.sha }}
+          tag_name: v${{ env.VERSION }}
+          release_name: Release v${{ env.VERSION }}
           draft: false
           prerelease: false
 
@@ -39,6 +43,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: target/ASPGamerule-${{ github.sha }}.jar
-          asset_name: ASPGamerule-${{ github.sha }}.jar
+          asset_path: target/ASPGamerule-${{ env.VERSION }}.jar
+          asset_name: ASPGamerule-${{ env.VERSION }}.jar
           asset_content_type: application/java-archive
