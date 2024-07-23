@@ -1,0 +1,13 @@
+##################################################
+# https://minecraft.fandom.com/wiki/Game_rule
+##################################################
+
+worlds:
+  # support regex
+  world-user-.*:
+    keepInventory: true
+  pvp:
+    doDaylightCycle: false
+    fallDamage: false
+    keepInventory: true
+    randomTickSpeed: 0

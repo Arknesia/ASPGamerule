@@ -1,0 +1,4 @@
+name: ASPGamerule
+version: '${project.version}'
+main: com.arknesia.plugin.main
+api-version: '1.20'
